@@ -153,9 +153,8 @@ def delete_file(request, file_id):
 def update_file_metadata(metadata):
     files = FileMetaData.objects.all()
     for file in files:
-        file.name = metadata["file_{}_name".format(file.id)]
-        file.description = metadata["file_{}_description"
-                                    .format(file.id)]
-        file.tags = json.dumps(metadata["file_{}_tags"
-                               .format(file.id)].split(","))
+        file.name = str(metadata.get("file_1_name"))
+        file.description = str(metadata.get("file_{}_description"
+                                    .format(file.id)))
+        file.tags = json.dumps(str(metadata.get("file_1_tags")).split(","))
         file.save()
